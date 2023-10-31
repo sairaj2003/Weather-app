@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: url('https://png.pngtree.com/thumb_back/fh260/background/20201009/pngtree-clear-blue-sky-with-white-clouds-panoramic-view-of-bright-clear-image_403142.jpg') center center/cover no-repeat;
+}
+
+.box {
+    width: 400px;  
+    height: 500px; 
+    background: rgba(0, 0, 0, 0.7); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+
+.wave-one,
+.wave-two,
+.wave-three {
+    height: 50px;
+    background-repeat: repeat-x;
+    background-size: cover;
+}
+
+#weather {
+    margin-top: 0px;
+}
+
+.fa-light, .fa-solid,.fa-regular {
+    font-size: 48px;
+}
+
+.location {
+    font-size: 24px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    letter-spacing: 2px;
+}
+
+#date {
+    font-size: 14px;
+    margin: 5px 0;
+    padding: 10px 10px;
+    letter-spacing: 2px;
+}
+
+.temprature {
+    font-size: 36px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.tempmin_max {
+    font-size: 14px;
+    letter-spacing: 2px;
+} 
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.fa-regular.fa-sun {
+    animation: zoomInOut 5s ease-in-out infinite;
+    margin-top: -50px; 
+    
+}
+
+
+@media (max-width: 768px) {
+    .box {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .box {
+        width: 95%;
+    }
+}

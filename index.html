@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="icon"
+      href="https://store-images.s-microsoft.com/image/apps.60423.13664108468657913.8218191b-9e2a-49f4-8455-3c027b985a5d.30a38556-a2f8-4e20-835b-d8d914491b8b"
+      type="image/png"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        background: url("https://png.pngtree.com/thumb_back/fh260/background/20201009/pngtree-clear-blue-sky-with-white-clouds-panoramic-view-of-bright-clear-image_403142.jpg")
+          center center/cover no-repeat;
+      }
+
+      .box {
+        width: 400px;
+        height: 500px;
+        background: rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        text-align: center;
+      }
+
+      .wave-one,
+      .wave-two,
+      .wave-three {
+        height: 50px;
+        background-repeat: repeat-x;
+        background-size: cover;
+      }
+
+      #weather {
+        margin-top: 0px;
+      }
+
+      .fa-light,
+      .fa-solid,
+      .fa-regular {
+        font-size: 48px;
+      }
+
+      .location {
+        font-size: 24px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        letter-spacing: 2px;
+      }
+
+      #date {
+        font-size: 14px;
+        margin: 5px 0;
+        padding: 10px 10px;
+        letter-spacing: 2px;
+      }
+
+      .temprature {
+        font-size: 36px;
+        margin: 10px 0;
+        padding: 10px;
+      }
+
+      .tempmin_max {
+        font-size: 14px;
+        letter-spacing: 2px;
+      }
+
+      @keyframes zoomInOut {
+        0% {
+          transform: scale(0.8);
+        }
+        50% {
+          transform: scale(1.5);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .fa-regular.fa-sun {
+        animation: zoomInOut 5s ease-in-out infinite;
+        margin-top: -50px;
+      }
+
+      @media (max-width: 768px) {
+        .box {
+          width: 100%;
+          max-width: 350px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .box {
+          width: 95%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="wave-one"></div>
+      <div class="wave-two"></div>
+      <div class="wave-three"></div>
+
+      <div id="weather">
+        <i class="fa-regular fa-sun" style="color: #eccc68"></i>
+      </div>
+
+      <div class="info">
+        <h2 class="location">
+          <i class="fa-solid fa-street-view"></i>{%location%},{%country%}
+        </h2>
+        <p id="date">WED | OCT 3 | 10:10 AM</p>
+        <h1 class="temprature">{%tempval%}°C</h1>
+        <h3 class="tempmin_max">Min {%tempmin%}°C | Max {%tempmax%}°C</h3>
+      </div>
+    </div>
+
+
+    <script>
+      const curDate = document.getElementById("date");
+    let weathercon = document.getElementById("weather");
+
+      const tempStatus = "{%tempstatus%}";
+
+      if(tempStatus=="sunny")
+      {
+        weathercon.innerHTML="<i class='fa-regular fa-sun' style='color: #eccc68'></i>";
+      }
+      else if(tempStatus=="Clouds")
+      {
+        weathercon.innerHTML="<i class='fa-solid fa-cloud' style='color:#f1f2f6'></i>";
+      }
+      else if(tempStatus=="Rainy")
+      {
+        weathercon.innerHTML="<i class='fa-solid fa-cloud-rain' style='color:#a4b0be'></i>";
+      }
+      else
+      {
+        weathercon.innerHTML="<i class='fa-regular fa-sun' style='color: #eccc68'></i>";
+      }
+
+
+      function updateDateTime() {
+        const curDate = document.getElementById("date");
+        let currentTime = new Date();
+
+        var weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+
+        var months = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "June",
+          "July",
+          "Aug",
+          "Sept",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+
+        let day = weekday[currentTime.getDay()];
+        let month = months[currentTime.getMonth()];
+        let date = currentTime.getDate();
+        let hours = currentTime.getHours();
+        let mins = currentTime.getMinutes();
+        let periods = "AM";
+
+        if (hours > 11) {
+          periods = "PM";
+          if (hours > 12) hours -= 12; // for 12hr clock format
+        }
+
+        if (mins < 10) {
+          mins = "0" + mins;
+        }
+
+        curDate.innerHTML = `${day} ${month} ${date} | ${hours}:${mins} ${periods}`;
+      }
+
+      // Call the function once to set the initial date and time
+      updateDateTime();
+
+      // Update date and time every second
+      setInterval(updateDateTime, 1000);
+    </script>
+  </body>
+</html>
