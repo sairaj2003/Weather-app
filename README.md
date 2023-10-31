@@ -19,4 +19,4 @@
 </ul>
 
 <h3>Screenshot:</h3>
-![logo](https://github.com/sairaj2003/Weather-app/blob/main/Screenshot%202023-10-31%20103134.png?raw=true)
+![logo](https://github.com/sairaj2003/Weather-app/blob/main/Screenshot%202023-10-31%20103134.png)
