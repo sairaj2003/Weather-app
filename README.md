@@ -16,7 +16,8 @@
   <li>Frontend:</li><p>HTML, CSS, JavaScript</p>
   <li>Backend:</li><p>Node.js</p>
   <li>External API:</li><p>OpenWeather API</p>
+  
 </ul>
 
-<h3>Screenshot:</h3>
+<h3>Screenshot:</h>
 ![logo](https://github.com/sairaj2003/Weather-app/blob/main/Screenshot%202023-10-31%20103134.png)
